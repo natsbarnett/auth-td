@@ -4,6 +4,8 @@ SETCOLOR_FAILURE="\\033[1;31m"
 SETCOLOR_SUCCESS="\\033[1;32m"
 SETCOLOR_WARNING="\\033[1;33m"
 SETCOLOR_NORMAL="\\033[0;39m"
+INSTALLDIR="/var/www/html"
+REPOLINK="https://github.com/natsbarnett/auth-td/archive/refs/heads/main.zip"
 success() {
     echo -e "${SETCOLOR_SUCCESS}$*${SETCOLOR_NORMAL}"
 }
@@ -70,3 +72,22 @@ success "+-----------------------------------------------------+"
 success "+---        Installation des services              ---+"
 success "+-----------------------------------------------------+"
 # TODO : finir cette merde
+warn "Récupération de l'archive"
+cd $INSTALLDIR
+mkdir td-auth
+wget -q $REPOLINK
+unzip -q main.zip -d ./td-auth
+cd td-auth
+mv * ../
+
+warn "Création des clés privées et publiques pour le JWT..."
+openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
+    openssl rsa -in private.pem -pubout -out public.pem
+
+warn "Création des clés privées et publiques pour le jeton de refresh..."
+openssl genpkey -algorithm RSA -out private_refresh.pem -pkeyopt rsa_keygen_bits:2048
+openssl rsa -in private_refresh.pem -pubout -out public_refresh.pem
+
+success "       => fait :D"
+
+echo "{}" > tokens.json
