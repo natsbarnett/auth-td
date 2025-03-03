@@ -61,6 +61,8 @@ apt-get -qq install git -y
 warn "Installation de node JS..."
 apt-get -qq install nodejs npm -y
 
+warn "Installation de composer"
+
 warn "Vérification de l'installation d'Apache..."
 if service apache2 status; then
     success "Apache est installé et fonctionne."
@@ -76,18 +78,27 @@ warn "Récupération de l'archive"
 cd $INSTALLDIR
 mkdir td-auth
 wget -q $REPOLINK
-unzip -q main.zip -d ./td-auth
-cd td-auth
+unzip -q main.zip -d $INSTALLDIR/td-auth
+cd td-auth/auth-td-main
 mv * ../
+cd ../
+rm -rf ./auth-td-main
 
 warn "Création des clés privées et publiques pour le JWT..."
 openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
-    openssl rsa -in private.pem -pubout -out public.pem
+openssl rsa -in private.pem -pubout -out public.pem
 
 warn "Création des clés privées et publiques pour le jeton de refresh..."
 openssl genpkey -algorithm RSA -out private_refresh.pem -pkeyopt rsa_keygen_bits:2048
 openssl rsa -in private_refresh.pem -pubout -out public_refresh.pem
+echo "{}" > tokens.json
 
+cd ../ && rm -rf main.zip
 success "       => fait :D"
 
-echo "{}" > tokens.json
+warn "Installation de composer"
+apt-get -qq install composer
+
+cd $INSTALLDIR
+chown -R www-data:www-data $INSTALLDIR
+chmod -R 775 $INSTALLDIR
