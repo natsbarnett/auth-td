@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Flux RSS utilisateurs loggés</title>
+        <link>localhost</link>
+        <description>Profitez de ce flux rss tout pété fait avec le cul lol</description>
+        <item>
+            <title>Bouh</title>
+            <link>localhost</link>
+            <description><![CDATA[<div style="display:flex; align-items:center; gap:10px;">
+            <p>Oh vous avez eu peur hein ?</p>
+            <img src="./data/vibin_naoto.gif"></div>]]></description>
+        </item>
+        <item>
+            <title>Bouh</title>
+            <link>localhost</link>
+            <description><![CDATA[<div style="display:flex; align-items:center; gap:10px;">
+            <img src="./data/melty_jack_frost.png">
+            <p>J'ai genre 0 inspi pour les datas mais cpg on fait comme on peut</p></div>
+            ]]></description>
+        </item>
+       
+    </channel>
+</rss>
