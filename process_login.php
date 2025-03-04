@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'jwt' => $jwt,
             'refreshToken' => $refreshToken,
             'csrf' => $csrfToken,
-            'redirect' => "/hello/" // Ajoutez ici l'URL vers laquelle vous voulez rediriger
+            'redirect' => "/td-auth/hello/" // Ajoutez ici l'URL vers laquelle vous voulez rediriger
         ]);
     } else {
         ob_clean(); // Nettoie le buffer de sortie avant d'envoyer la réponse JSON
