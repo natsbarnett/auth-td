@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'jwt' => $jwt,
             'refreshToken' => $refreshToken,
             'csrf' => $csrfToken,
-            'redirect' => '/tps-integ-web-s6/td1/hello/'  // Ajoutez ici l'URL vers laquelle vous voulez rediriger
+            'redirect' => "/hello/" // Ajoutez ici l'URL vers laquelle vous voulez rediriger
         ]);
     } else {
         ob_clean(); // Nettoie le buffer de sortie avant d'envoyer la réponse JSON
