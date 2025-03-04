@@ -27,7 +27,8 @@ class Login
 
         $payload = [
             'username' => $username,
-            'exp' => time() + 3600
+            'exp' => time() + 3600,
+            'csrf' => $csrfToken
         ];
        
 
